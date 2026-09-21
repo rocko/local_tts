@@ -1,0 +1,20 @@
+services:
+  text-to-speech:
+    build:
+      context: .
+    container_name: text-to-speech
+
+    ports:
+      - "8092:8092"
+
+    environment:
+      TTS_LANG_CODE: "a"
+      TTS_DEFAULT_VOICE: "af_heart"
+
+    volumes:
+      - kokoro_cache:/models/huggingface
+
+    restart: unless-stopped
+
+volumes:
+  kokoro_cache:
